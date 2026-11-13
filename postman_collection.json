@@ -1,0 +1,288 @@
+{
+  "info": {
+    "_postman_id": "c8d45f10-9b32-4e92-93e1-student-mgmt-v1",
+    "name": "Student Management System API",
+    "description": "Complete Postman collection for the College Assignment Student Management System with all 6 REST endpoints.",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+  },
+  "variable": [
+    {
+      "key": "baseUrl",
+      "value": "http://localhost:8080/api/students",
+      "type": "string"
+    }
+  ],
+  "item": [
+    {
+      "name": "1. Create Student",
+      "request": {
+        "method": "POST",
+        "header": [
+          {
+            "key": "Content-Type",
+            "value": "application/json"
+          }
+        ],
+        "body": {
+          "mode": "raw",
+          "raw": "{\n  \"name\": \"Alex Johnson\",\n  \"email\": \"alex.johnson@college.edu\",\n  \"course\": \"Computer Science\",\n  \"age\": 21\n}"
+        },
+        "url": {
+          "raw": "{{baseUrl}}",
+          "host": ["{{baseUrl}}"]
+        },
+        "description": "Creates a new student record in MySQL. Auto-generates ID."
+      },
+      "response": [
+        {
+          "name": "201 Created Response",
+          "originalRequest": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"name\": \"Alex Johnson\",\n  \"email\": \"alex.johnson@college.edu\",\n  \"course\": \"Computer Science\",\n  \"age\": 21\n}"
+            },
+            "url": {
+              "raw": "{{baseUrl}}",
+              "host": ["{{baseUrl}}"]
+            }
+          },
+          "status": "Created",
+          "code": 201,
+          "_postman_previewlanguage": "json",
+          "header": [
+            {
+              "key": "Content-Type",
+              "value": "application/json"
+            }
+          ],
+          "body": "{\n  \"id\": 1,\n  \"name\": \"Alex Johnson\",\n  \"email\": \"alex.johnson@college.edu\",\n  \"course\": \"Computer Science\",\n  \"age\": 21\n}"
+        }
+      ]
+    },
+    {
+      "name": "2. Get All Students",
+      "request": {
+        "method": "GET",
+        "header": [],
+        "url": {
+          "raw": "{{baseUrl}}",
+          "host": ["{{baseUrl}}"]
+        },
+        "description": "Retrieves the list of all students currently stored in the database."
+      },
+      "response": [
+        {
+          "name": "200 OK Response",
+          "originalRequest": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "{{baseUrl}}",
+              "host": ["{{baseUrl}}"]
+            }
+          },
+          "status": "OK",
+          "code": 200,
+          "_postman_previewlanguage": "json",
+          "header": [
+            {
+              "key": "Content-Type",
+              "value": "application/json"
+            }
+          ],
+          "body": "[\n  {\n    \"id\": 1,\n    \"name\": \"Alex Johnson\",\n    \"email\": \"alex.johnson@college.edu\",\n    \"course\": \"Computer Science\",\n    \"age\": 21\n  },\n  {\n    \"id\": 2,\n    \"name\": \"Sophia Patel\",\n    \"email\": \"sophia.patel@college.edu\",\n    \"course\": \"Data Science\",\n    \"age\": 22\n  }\n]"
+        }
+      ]
+    },
+    {
+      "name": "3. Get Student by ID",
+      "request": {
+        "method": "GET",
+        "header": [],
+        "url": {
+          "raw": "{{baseUrl}}/1",
+          "host": ["{{baseUrl}}"],
+          "path": ["1"]
+        },
+        "description": "Retrieves a single student by primary key ID."
+      },
+      "response": [
+        {
+          "name": "200 OK Response",
+          "originalRequest": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "{{baseUrl}}/1",
+              "host": ["{{baseUrl}}"],
+              "path": ["1"]
+            }
+          },
+          "status": "OK",
+          "code": 200,
+          "_postman_previewlanguage": "json",
+          "header": [
+            {
+              "key": "Content-Type",
+              "value": "application/json"
+            }
+          ],
+          "body": "{\n  \"id\": 1,\n  \"name\": \"Alex Johnson\",\n  \"email\": \"alex.johnson@college.edu\",\n  \"course\": \"Computer Science\",\n  \"age\": 21\n}"
+        },
+        {
+          "name": "404 Not Found Response",
+          "originalRequest": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "{{baseUrl}}/999",
+              "host": ["{{baseUrl}}"],
+              "path": ["999"]
+            }
+          },
+          "status": "Not Found",
+          "code": 404,
+          "_postman_previewlanguage": "json",
+          "header": [
+            {
+              "key": "Content-Type",
+              "value": "application/json"
+            }
+          ],
+          "body": "{\n  \"timestamp\": \"2026-11-13T14:30:00.123456\",\n  \"status\": 404,\n  \"error\": \"Not Found\",\n  \"message\": \"Student not found with ID: 999\",\n  \"path\": \"/api/students/999\"\n}"
+        }
+      ]
+    },
+    {
+      "name": "4. Update Student",
+      "request": {
+        "method": "PUT",
+        "header": [
+          {
+            "key": "Content-Type",
+            "value": "application/json"
+          }
+        ],
+        "body": {
+          "mode": "raw",
+          "raw": "{\n  \"name\": \"Alex Johnson\",\n  \"email\": \"alex.j.updated@college.edu\",\n  \"course\": \"Artificial Intelligence\",\n  \"age\": 22\n}"
+        },
+        "url": {
+          "raw": "{{baseUrl}}/1",
+          "host": ["{{baseUrl}}"],
+          "path": ["1"]
+        },
+        "description": "Updates an existing student record by ID."
+      },
+      "response": [
+        {
+          "name": "200 OK Response",
+          "originalRequest": {
+            "method": "PUT",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"name\": \"Alex Johnson\",\n  \"email\": \"alex.j.updated@college.edu\",\n  \"course\": \"Artificial Intelligence\",\n  \"age\": 22\n}"
+            },
+            "url": {
+              "raw": "{{baseUrl}}/1",
+              "host": ["{{baseUrl}}"],
+              "path": ["1"]
+            }
+          },
+          "status": "OK",
+          "code": 200,
+          "_postman_previewlanguage": "json",
+          "header": [
+            {
+              "key": "Content-Type",
+              "value": "application/json"
+            }
+          ],
+          "body": "{\n  \"id\": 1,\n  \"name\": \"Alex Johnson\",\n  \"email\": \"alex.j.updated@college.edu\",\n  \"course\": \"Artificial Intelligence\",\n  \"age\": 22\n}"
+        }
+      ]
+    },
+    {
+      "name": "5. Delete Student",
+      "request": {
+        "method": "DELETE",
+        "header": [],
+        "url": {
+          "raw": "{{baseUrl}}/1",
+          "host": ["{{baseUrl}}"],
+          "path": ["1"]
+        },
+        "description": "Deletes a student record permanently by ID."
+      },
+      "response": [
+        {
+          "name": "204 No Content Response",
+          "originalRequest": {
+            "method": "DELETE",
+            "header": [],
+            "url": {
+              "raw": "{{baseUrl}}/1",
+              "host": ["{{baseUrl}}"],
+              "path": ["1"]
+            }
+          },
+          "status": "No Content",
+          "code": 204,
+          "_postman_previewlanguage": "plain",
+          "header": [],
+          "body": ""
+        }
+      ]
+    },
+    {
+      "name": "6. Get Students by Course",
+      "request": {
+        "method": "GET",
+        "header": [],
+        "url": {
+          "raw": "{{baseUrl}}/course/Computer%20Science",
+          "host": ["{{baseUrl}}"],
+          "path": ["course", "Computer%20Science"]
+        },
+        "description": "Filters and retrieves students enrolled in a specific course name."
+      },
+      "response": [
+        {
+          "name": "200 OK Response",
+          "originalRequest": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "{{baseUrl}}/course/Computer%20Science",
+              "host": ["{{baseUrl}}"],
+              "path": ["course", "Computer%20Science"]
+            }
+          },
+          "status": "OK",
+          "code": 200,
+          "_postman_previewlanguage": "json",
+          "header": [
+            {
+              "key": "Content-Type",
+              "value": "application/json"
+            }
+          ],
+          "body": "[\n  {\n    \"id\": 1,\n    \"name\": \"Alex Johnson\",\n    \"email\": \"alex.johnson@college.edu\",\n    \"course\": \"Computer Science\",\n    \"age\": 21\n  }\n]"
+        }
+      ]
+    }
+  ]
+}
